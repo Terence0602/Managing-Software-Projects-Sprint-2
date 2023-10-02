@@ -30,14 +30,14 @@
                 echo "Can't connect to database.";
             }
 
-            $SQL = "SELECT * FROM product WHERE ProductName LIKE '%$search%' LIKE '%$search%'";
+            $SQL = "SELECT * FROM product WHERE ProductName LIKE '%$search%'";
             $run = mysqli_query($conn, $SQL) or die(mysqli_error($conn));
             $result = mysqli_num_rows($run);
 
             echo '<b>' . $result . "</b> results found for search query '$search'.";
             echo '<ul>';
             while ($row = mysqli_fetch_assoc($run)) {
-                echo "<li><a href='displayProductInfo.php?search=" . $row['ProductName'] . "</a></li>";
+                echo "<li><a href='displayProductInfo.php?search=" . $row['ProductName'] . "'>" . $row['ProductName'] . "</a></li>";
             }
             echo '</ul>';
             echo '</div>';
