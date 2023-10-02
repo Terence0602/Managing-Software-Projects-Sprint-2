@@ -7,26 +7,20 @@
         <title>Goto Grocery - Product Records Page</title>
     </head>
     <body>
-        <header>
-            <a href="Home.php"><h1>Goto Grocery</h1></a>
-            <hr />
-            <nav>
-                <a href="member.php">Member Records</a>
-                <a href="product.php">Product Records</a>
-                <a href="sales.php">Sales Records</a>
-            </nav>
-            <hr />
-        </header>
-        <h1>Product Records Page</h1>
-        <hr />
-        <nav>
-            <a href="addProduct.php">Add Product Record</a>
-            <a href="editProduct.php">Edit Product Record</a>
-            <a href="deleteProduct.php">Delete Product Record</a>
-            <a href="searchProduct.php">Search Product Record</a>
+    <nav class = "navigationbar">
+            <a href="Home.php">Home</a>
+            <a href="member.php">Member Records</a>
+            <a class="onpage" href="product.php">Product Records</a>
+            <a href="sales.php">Sales Records</a>
         </nav>
-        <hr />
-        <h3>Add Product Form</h3>
+        <br>
+        <div class="sidebar">
+            <nav class="vertical-nav">
+                <a class="onpage" href="addProduct.php">Add Product Record</a>
+                <a href="searchProduct.php">Manage Product Records</a>
+            </nav>
+        </div>
+        <h1 class="center">Add a new product record</h1>
         <form id="product_R" method="post" action="product_process.php">
             <fieldset>
                 <legend>Add Product Form</legend>

@@ -1,30 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
+<!DOCTYPE html> 
+<html lang="en"> 
+    <head> 
         <meta charset="utf-8" />
         <meta name="description" content="Product Records" />
         <link rel="stylesheet" href="./css/style.css">
         <title>Goto Grocery - Product Records Page</title>
-    </head>
+    </head> 
     <body>
-        <header>
-            <a href="Home.php"><h1>Goto Grocery</h1></a>
-            <hr />
-            <nav>
-                <a href="member.php">Member Records</a>
-                <a href="product.php">Product Records</a>
-                <a href="sales.php">Sales Records</a>
-            </nav>
-            <hr />
-        </header>
-        <h1>Product Records Page</h1>
-        <h3>Select Action</h3>
-        <hr />
-        <nav>
-            <a href="addProduct.php">Add Product Record</a>
-            <a href="editProduct.php">Edit Product Record</a>
-            <a href="deleteProduct.php">Delete Product Record</a>
-            <a href="searchProduct.php">Search Product Record</a>
+        <nav class = "navigationbar">
+            <a href="Home.php">Home</a>
+            <a href="member.php">Member Records</a>
+            <a class="onpage" href="product.php">Product Records</a>
+            <a href="sales.php">Sales Records</a>
         </nav>
-    </body>
-</html>
+        <div id="container2">
+            <h1 class = "center" >Product Records</h2>
+            <h2 class = "center" >Please select an action below.</h2>
+            <ul class = "menu">
+                <li><a href="addProduct.php">Add a Product Record</a></li>
+                <li><a href="searchProduct.php">Manage Product Records</a></li>
+            </ul>
+        </div>
+    </body> 
+</html> 
