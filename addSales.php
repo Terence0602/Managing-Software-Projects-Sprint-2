@@ -7,26 +7,20 @@
         <title>Goto Grocery - Sales Records Page</title>
     </head>
     <body>
-        <header>
-            <a href="Home.php"><h1>Goto Grocery</h1></a>
-            <hr />
-            <nav>
-                <a href="member.php">Member Records</a>
-                <a href="product.php">Product Records</a>
-                <a href="sales.php">Sales Records</a>
-            </nav>
-            <hr />
-        </header>
-        <h1>Sales Records Page</h1>
-        <hr />
-        <nav>
-            <a href="addSales.php">Add Sales Record</a>
-            <a href="editSales.php">Edit Sales Record</a>
-            <a href="deleteSales.php">Delete Sales Record</a>
-            <a href="searchSales.php">Search Sales Record</a>
+    <nav class = "navigationbar">
+            <a href="Home.php">Home</a>
+            <a href="member.php">Member Records</a>
+            <a href="product.php">Product Records</a>
+            <a class="onpage" href="sales.php">Sales Records</a>
         </nav>
-        <h3>Add Sales Record</h3>
-        <hr />
+        <br>
+        <div class="sidebar">
+            <nav class="vertical-nav">
+                <a class="onpage" href="addSales.php">Add Sales Record</a>
+                <a href="searchSales.php">Manage Sales Records</a>
+            </nav>
+        </div>
+        <h1 class="center">Add a new Sales record</h1>
         <form id="sales_R" method="post" action="sales_process.php">
             <fieldset>
                 <legend>Add Sales Form</legend>
