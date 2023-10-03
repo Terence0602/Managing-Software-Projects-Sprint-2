@@ -1,3 +1,7 @@
+<?php
+$sname = $_GET['name'];
+?>
+
 <!DOCTYPE html> 
 <html lang="en"> 
     <head> 
