@@ -1,3 +1,7 @@
+<?php
+$search_query = $_GET['search_query'];
+?>
+
 <!DOCTYPE html> 
 <html lang="en"> 
     <head> 
@@ -7,7 +11,7 @@
         <title>Goto Grocery - Member Records Page</title>
     </head> 
     <body>
-        <nav class = "navigationbar">
+        <nav class="navigationbar">
             <a href="Home.php">Home</a>
             <a class="onpage" href="member.php">Member Records</a>
             <a href="product.php">Product Records</a>
@@ -20,27 +24,28 @@
                 <a class="onpage" href="searchMember.php">Manage Member Records</a>
             </nav>
         </div>
-        <?php
-            $search = $_GET['name'];
-        ?>
         <div id="container">
-        <?php
+            <?php
             $conn = mysqli_connect('localhost', 'root', '', 'gotogro-mrm');
             if (!$conn) {
-                echo "Can't connect to database.";
+                echo "Can't connect to the database.";
             }
 
-            $SQL = "SELECT * FROM member WHERE MemberFirstName LIKE '%$search%' OR MemberLastName LIKE '%$search%'";
+            $SQL = "SELECT * FROM member WHERE MemberFirstName LIKE '%$search_query%' OR MemberLastName LIKE '%$search_query%'";
             $run = mysqli_query($conn, $SQL) or die(mysqli_error($conn));
             $result = mysqli_num_rows($run);
 
-            echo '<b>' . $result . "</b> results found for search query '$search'.";
-            echo '<ul>';
-            while ($row = mysqli_fetch_assoc($run)) {
-                echo "<li><a href='displayMemberInfo.php?search=" . $row['MemberFirstName'] . "'>" . $row['MemberFirstName'] . " " . $row['MemberLastName'] . "</a></li>";
+            if ($result > 0) {
+                echo "<h2 class='center'>Search Results for '$search_query'</h2>";
+                echo '<ul class="menu2">';
+                while ($row = mysqli_fetch_assoc($run)) {
+                    echo "<li><a href='displayMemberInfo.php?fname=" . $row['MemberFirstName'] . "&lname=" . $row['MemberLastName'] . "'>" . $row['MemberFirstName'] . " " . $row['MemberLastName'] . "</a></li>";
+                }
+                echo '</ul>';
+            } else {
+                echo "No matching members found.";
             }
-            echo '</ul>';
-            echo '</div>';
-        ?>
+            ?>
+        </div>
     </body>
 </html>

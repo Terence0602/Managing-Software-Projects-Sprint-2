@@ -101,4 +101,70 @@ hr.divider {
     padding: 16px;
     background-color: rgb(255, 255, 255);
     box-shadow: 0 0 10px #525252;
-  }
+}
+
+ul.index {
+  list-style-type: none;
+  padding: 0;
+  display: block;
+  width: 500px;
+  overflow: hidden;
+  background-color: rgb(84, 0, 0);
+  font-family: Garamond;
+  font-size: 18px;
+}
+
+ul.menu {
+  list-style-type: none;
+  padding: 0;
+  margin-left: auto;
+  margin-right: auto;
+  width: 500px;
+  overflow: hidden;
+  background-color: rgb(84, 0, 0);
+  font-family: Garamond;
+  font-size: 30px;
+}
+
+ul.bg {
+  background: #e4dfdf;
+  width:60%;
+  height: 60%;
+  padding: 30px;
+  position: relative;
+  display: block;
+  box-shadow: 0 0 10px #000000;
+  left: 20%;
+  font-size: 20px;
+}
+
+li {
+  float: center;
+}
+
+li a {
+  display:block;
+  color: white;
+  text-align: center;
+  padding: 25px 20px;
+  text-decoration: none;
+  font-family: Garamond;
+  font-weight: bold;
+}
+
+li a:hover {
+  background-color: rgb(225, 225, 225);
+  color: black;
+}
+
+ul.menu2 {
+  list-style-type: none;
+  padding: 0;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  overflow: hidden;
+  background-color: rgb(84, 0, 0);
+  font-family: Garamond;
+  font-size: 25px;
+}

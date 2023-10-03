@@ -23,24 +23,24 @@
         <h1 class = "center" >Managing member records</h1>
         <div id="container">
             <?php
-                $name_error = "";
-                $name = "";
+                $search_query_error = "";
+                $search_query = "";
 
                 if ($_SERVER["REQUEST_METHOD"] == "POST"){
-                    if (empty($_POST["name"])) {
-                    $name_error = "Name is required";
-                    }else if(!preg_match("/^[a-zA-Z-' ]*$/",$_POST["name"])){
-                        $name_error = "You can only enter letters and spaces. Please try again.";
+                    if (empty($_POST["search_query"])) {
+                    $search_query_error = "Name is required";
+                    }else if(!preg_match("/^[a-zA-Z-' ]*$/",$_POST["search_query"])){
+                        $search_query_error = "You can only enter letters and spaces. Please try again.";
                     }else{
-                    $name = $_POST["name"];
-                    header("Location: searchMemberProcess.php?name=$name");
+                    $search_query = $_POST["search_query"];
+                    header("Location: searchMemberProcess.php?search_query=$search_query");
                     }
                 }
             ?>
             <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>"> 
                 <h2>Please enter a search query to search for names associated with their respective records.</h2>
-                Name: <input type="text" name="name" value="<?php echo $name;?>">
-                <span class="error">* <?php echo $name_error;?></span>
+                Name: <input type="text" name="search_query" value="<?php echo $search_query;?>">
+                <span class="error">* <?php echo $search_query_error;?></span>
                 <br><br>
                 <input type="submit" name="submit" class="button"></input><br>
             </form>
