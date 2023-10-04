@@ -2,9 +2,9 @@
 <html lang="en"> 
     <head> 
         <meta charset="utf-8" />
-        <meta name="description" content="Product Records" />
+        <meta name="description" content="Member Records" />
         <link rel="stylesheet" href="./css/style.css">
-        <title>Goto Grocery - Product Records Page</title>
+        <title>Goto Grocery - Member Records Page</title>
     </head> 
     <body>
         <nav class = "navigationbar">
@@ -22,6 +22,7 @@
         </div>
         <?php
         $pname = $_GET['pname'];
+        $product_id = $_GET['product_id'];
         ?>
         <div id="container">
         <?php
@@ -29,14 +30,15 @@
             if(!$conn){
                 echo "Can't connect to database.";
             }
-            $SQL = "SELECT * FROM product WHERE ProductName LIKE '%$pname%'";
+            $SQL = "SELECT * FROM product WHERE ProductName LIKE '%$pname%' AND ProductID LIKE '$product_id'";
             $run = mysqli_query($conn, $SQL) or die(mysqli_error($conn));
             $result = mysqli_num_rows($run);
 
             if ($result > 0) {
                 $row = mysqli_fetch_assoc($run);
                 echo "
-                <h1 class='center'>Record for " . $row['ProductName'] . "</h1>
+                <h1 class='center'>Are you sure you want to delete this record for " . $row['ProductName'] . "?</h1>
+                <h2 class='center'>Please review the details below again before confirming. This process is irreversible.</h2>
                 <hr class='divider'>
                 <ul>
                     <li>Product ID: " . $row['ProductID'] . "</li>
@@ -48,8 +50,8 @@
                 </ul>
                 ";
 
-                echo "<a href='confirmProductDelete.php?pname=" . $row['ProductName'] . "&product_id=" . $row['ProductID'] . "'><button>Delete Product</button></a><br><br>";
-                echo "<a href='editProduct.php?updatename=" . $row['ProductName'] . "'><button>Update Product Credentials</button></a>";
+                echo "<a href='productDeleteProcess.php?pname=" . $row['ProductName'] . "&product_id=" . $row['ProductID'] . "'><button>Delete Member</button></a><br><br>";
+                echo "<a href='searchProduct.php'><button>Cancel</button></a>";
                 echo "</div>";
             }
         ?>

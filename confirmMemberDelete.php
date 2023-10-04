@@ -37,7 +37,8 @@
             if ($result > 0) {
                 $row = mysqli_fetch_assoc($run);
                 echo "
-                <h1 class='center'>Record for " . $row['MemberFirstName'] . " " . $row['MemberLastName'] . "</h1>
+                <h1 class='center'>Are you sure you want to delete this record for " . $row['MemberFirstName'] . " " . $row['MemberLastName'] . "?</h1>
+                <h2 class='center'>Please review the details below again before confirming. This process is irreversible.</h2>
                 <hr class='divider'>
                 <ul>
                     <li>Member ID: " . $row['MemberID'] . "</li>
@@ -54,8 +55,8 @@
                 </ul>
                 ";
 
-                echo "<a href='confirmMemberDelete.php?fname=" . $row['MemberFirstName'] . "&lname=" . $row['MemberLastName'] . "&member_id=" . $row['MemberID'] . "'><button>Delete Member</button></a><br><br>";
-                echo "<a href='editMember.php?updatename=" . $row['MemberFirstName'] . "'><button>Update Member Credentials</button></a>";
+                echo "<a href='memberDeleteProcess.php?fname=" . $row['MemberFirstName'] . "&lname=" . $row['MemberLastName'] . "&member_id=" . $row['MemberID'] . "'><button>Delete Member</button></a><br><br>";
+                echo "<a href='searchMember.php'><button>Cancel</button></a>";
                 echo "</div>";
             }
         ?>

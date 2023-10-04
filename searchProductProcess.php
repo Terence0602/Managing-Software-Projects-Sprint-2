@@ -1,7 +1,3 @@
-<?php
-$sname = $_GET['name'];
-?>
-
 <!DOCTYPE html> 
 <html lang="en"> 
     <head> 
@@ -39,9 +35,9 @@ $sname = $_GET['name'];
             $result = mysqli_num_rows($run);
 
             echo '<b>' . $result . "</b> results found for search query '$search'.";
-            echo '<ul>';
+            echo '<ul class="menu2">';
             while ($row = mysqli_fetch_assoc($run)) {
-                echo "<li><a href='displayProductInfo.php?search=" . $row['ProductName'] . "'>" . $row['ProductName'] . "</a></li>";
+                echo "<li><a href='displayProductInfo.php?pname=" . $row['ProductName'] . "'>" . $row['ProductName'] . "</a></li>";
             }
             echo '</ul>';
             echo '</div>';

@@ -35,9 +35,9 @@
             $result = mysqli_num_rows($run);
 
             echo '<b>' . $result . "</b> results found for search query '$search'.";
-            echo '<ul>';
+            echo '<ul class="menu2">';
             while ($row = mysqli_fetch_assoc($run)) {
-                echo "<li><a href='displayProductInfo.php?search=" . $row['SalesBuyerName'] . "'>" . $row['SalesBuyerName'] . " - ". $row['SalesItem'] ." (". $row['SalesQuantity'] ." units)</a></li>";
+                echo "<li><a href='displaySalesInfo.php?buyer=" . $row['SalesBuyerName'] . "&item=" . $row['SalesItem'] ."&sales_id=" . $row['SalesID'] . "'>" . $row['SalesBuyerName'] . " - ". $row['SalesItem'] ." (". $row['SalesQuantity'] ." units)</a></li>";
             }
             echo '</ul>';
             echo '</div>';
