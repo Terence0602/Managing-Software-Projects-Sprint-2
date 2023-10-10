@@ -168,3 +168,27 @@ ul.menu2 {
   font-family: Garamond;
   font-size: 25px;
 }
+
+.sidebar2 {
+  width: 200px;
+  height: 900px;
+  background-color: rgb(84, 0, 0);
+  float: left;
+}
+
+.vertical-nav2 {
+  padding: 10px;
+  font-family: Georgia, serif;
+}
+
+.vertical-nav2 a {
+  display: block;
+  padding: 10px;
+  text-decoration: none;
+  color: rgb(225, 225, 225);
+}
+
+.vertical-nav2 a:hover {
+  background-color: rgb(225, 225, 225);
+  color: black;
+}

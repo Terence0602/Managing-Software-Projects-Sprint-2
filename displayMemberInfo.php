@@ -63,7 +63,7 @@
 
         echo "<button id='exportMemberCSV'>Export Member CSV</button><br><br>";
         echo "<a href='confirmMemberDelete.php?fname=" . $row['MemberFirstName'] . "&lname=" . $row['MemberLastName'] . "&member_id=" . $row['MemberID'] . "'><button>Delete Member</button></a><br><br>";
-        echo "<a href='editMember.php?updatename=" . $row['MemberFirstName'] . "'><button>Edit Member</button></a><br><br>";
+        echo "<a href='editMember.php?fname=" . $row['MemberFirstName'] . "&lname=" . $row['MemberLastName'] . "&member_id=" . $row['MemberID'] . "'><button>Edit Member</button></a><br><br>";
     }
     ?>
 </div>
