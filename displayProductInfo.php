@@ -50,7 +50,7 @@
 
             echo "<button id='exportProductCSV'>Export Product CSV</button><br><br>";
             echo "<a href='confirmProductDelete.php?pname=" . $row['ProductName'] . "&product_id=" . $row['ProductID'] . "'><button>Delete Product</button></a><br><br>";
-            echo "<a href='editProduct.php?updatename=" . $row['ProductName'] . "'><button>Update Product Credentials</button></a>";
+            echo "<a href='editProduct.php?pname=" . $row['ProductName'] . "&product_id=" . $row['ProductID'] . "'><button>Edit Product</button></a>";
             echo "</div>";
         }
     ?>
