@@ -52,7 +52,7 @@
 
             echo "<button id='exportSalesCSV'>Export Sales CSV</button><br><br>";
             echo "<a href='confirmSalesDelete.php?buyer=" . $row['SalesBuyerName'] . "&item=" . $row['SalesItem'] . "&sales_id=" . $row['SalesID'] . "'><button>Delete Sale</button></a><br><br>";
-            echo "<a href='editSales.php?buyer=" . $row['SalesBuyerName'] . "&item=" . $row['SalesItem'] . "&sales_id=" . $row['SalesID'] . "'><button>Update Sale Credentials</button></a>";
+            echo "<a href='editSales.php?buyer=" . $row['SalesBuyerName'] . "&item=" . $row['SalesItem'] . "&sales_id=" . $row['SalesID'] . "'><button>Edit Sales</button></a>";
             echo "</div>";
         }
         ?>

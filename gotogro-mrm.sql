@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 02, 2023 at 10:28 AM
+-- Generation Time: Oct 13, 2023 at 11:23 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.2
 
@@ -30,10 +30,10 @@ SET time_zone = "+00:00";
 CREATE TABLE `member` (
   `MemberID` int(11) NOT NULL,
   `MemberFirstName` varchar(50) NOT NULL,
-  `MemberLastName` varchar(40) NOT NULL,
+  `MemberLastName` varchar(50) NOT NULL,
   `MemberDateOfBirth` date DEFAULT NULL,
   `MemberEmail` varchar(40) NOT NULL,
-  `MemberPhone` varchar(20) NOT NULL,
+  `MemberPhone` varchar(10) NOT NULL,
   `MemberAddress` varchar(100) NOT NULL,
   `MemberSuburb` varchar(30) NOT NULL,
   `MemberState` varchar(30) NOT NULL,
@@ -46,10 +46,10 @@ CREATE TABLE `member` (
 --
 
 INSERT INTO `member` (`MemberID`, `MemberFirstName`, `MemberLastName`, `MemberDateOfBirth`, `MemberEmail`, `MemberPhone`, `MemberAddress`, `MemberSuburb`, `MemberState`, `MemberPostcode`, `MemberJoinDate`) VALUES
-(1, 'John', 'Larkin', '2001-07-11', 'jlarkin@gmail.com', '0451234567', '9 ABC Street', 'Longwood', 'VIC', 4111, '2023-09-16'),
-(2, 'Elizabeth', 'McLachlan', '1987-11-12', 'emclachlan@gmail.com', '0450111222', '12 Morrow Road', 'Longwood', 'NSW', 4444, '2023-09-17'),
-(3, 'Arnold', 'McLachlan', '1985-06-18', 'arnmcclachlan@gmail.com', '0450333444', '12 Morrow Road', 'Longwood', 'NSW', 4444, '2023-09-18'),
-(5, 'John', 'Doe', '2023-09-01', 'jdoe@idk.com', '045011122233', '123', '123', 'VIC', 1233, '2023-09-25');
+(1, 'Jonathan', 'Lurker', '2023-10-13', 'jonlurker1111@gmail.com', '0223334444', '14443 Walker Street', 'Johnwood', 'VIC', 3122, '2023-10-13'),
+(2, 'Henry', 'MacPherson', '0000-00-00', 'henmac@gmail.com', '0444323123', '24 Archer Street', 'Arrowhood', 'NSW', 4111, '2023-10-13'),
+(3, 'Hugh', 'Mann', '2003-06-10', 'definitelyreal@gmail.com', '0333145869', '77A Heartwell Avenue', 'Othersky', 'NSW', 1443, '2023-10-13'),
+(4, 'Mark', 'Anderson', '1997-02-13', 'markerson@gmail.com', '0111472983', '11B Antlers Street', 'Matchston', 'QLD', 4321, '2023-10-13');
 
 -- --------------------------------------------------------
 
@@ -71,11 +71,11 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`ProductID`, `ProductName`, `ProductStock`, `ProductSupplyDate`, `ProductSupplier`, `ProductPricePerUnit`) VALUES
-(1, 'Golden Apples', 500, '2023-09-06', 'The Appler', 5.00),
-(2, 'Bergerson Sour Cream Chips', 200, '2023-09-02', 'Bergerson Snacks', 14.00),
-(3, 'Rainbow Drops', 400, '2023-08-31', 'Bergerson Snacks', 8.00),
-(5, 'Markson Instant Noodles', 350, '2023-09-14', 'Markson QuickGoods', 3.50),
-(6, 'Marks Bananas', 1000, '2023-09-07', 'Mark', 10.00);
+(1, 'FreshFarms Organic Apples', 100, '2023-10-13', 'FreshFarms', 4.00),
+(2, 'SunnyMeadow Orange Juice', 300, '2023-10-13', 'SunnyMeadow', 3.00),
+(3, 'Greengrove Spinach', 200, '2023-10-10', 'Greengrove', 5.10),
+(4, 'Jays Sour Cream Chips', 150, '2023-10-12', 'J and J', 12.00),
+(5, 'Hartwell Yellow Bell Peppers', 400, '2023-10-13', 'Hartwell Goods', 2.00);
 
 -- --------------------------------------------------------
 
@@ -97,10 +97,11 @@ CREATE TABLE `sales` (
 --
 
 INSERT INTO `sales` (`SalesID`, `SalesSoldDate`, `SalesItem`, `SalesBuyerName`, `SalesQuantity`, `SalesPrice`) VALUES
-(1, '2023-09-15', 'Rainbow Drops', 'John Larkin', 3, 24.00),
-(2, '2023-09-09', 'Golden Apples', 'Elizabeth McLachlan', 4, 20.00),
-(3, '2023-09-08', 'Rainbow Drops', 'John Larkin', 6, 48.00),
-(4, '2023-09-12', 'Bergerson Sour Cream Chips', 'John Doe', 5, 70.00);
+(1, '2023-10-13', 'FreshFarms Organic Apples', 'Jonathan Lurker', 12, 48.00),
+(2, '2023-10-13', 'Greengrove Spinach', 'Henry MacPherson', 5, 25.50),
+(3, '2023-10-14', 'Greengrove Spinach', 'Mark Anderson', 12, 61.20),
+(4, '2023-10-13', 'Hartwell Yellow Bell Peppers', 'Hugh Mann', 5, 10.00),
+(5, '2023-10-13', 'FreshFarms Organic Apples', 'Henry MacPherson', 90, 360.00);
 
 -- --------------------------------------------------------
 
@@ -151,19 +152,19 @@ ALTER TABLE `staff`
 -- AUTO_INCREMENT for table `member`
 --
 ALTER TABLE `member`
-  MODIFY `MemberID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `MemberID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `ProductID` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `ProductID` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `sales`
 --
 ALTER TABLE `sales`
-  MODIFY `SalesID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `SalesID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `staff`
