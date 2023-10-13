@@ -24,7 +24,7 @@
 
         $product_name = $product_stock = $product_supply_date = $product_supplier = $product_price_per_unit = "";
         $product_name_error = $product_stock_error = $product_supply_date_error = $product_supplier_error = $product_price_per_unit_error = "";
-        $valid_form = false;
+        $valid_form = true;
 
         if ($_SERVER["REQUEST_METHOD"] == "POST"){
             if (empty($_POST["product_name"])) {
@@ -126,30 +126,32 @@
             return false;
             }
         }
+        
+        if ($_SERVER["REQUEST_METHOD"] == "POST"){
+            if($valid_form){
+                if (dupeProductName($_POST['product_name'])) {
+                    $conn = mysqli_connect('localhost', 'root', '', 'gotogro-mrm');
+                    if (!$conn) {
+                        echo "Can't connect to database.";
+                    }
+                    $SQL = "INSERT INTO product (ProductName, ProductStock, ProductSupplyDate, ProductSupplier, ProductPricePerUnit) 
+                    VALUES ('$product_name', '$product_stock', '$product_supply_date', '$product_supplier', '$product_price_per_unit')";
 
-        if($valid_form){
-            if (dupeProductName($_POST['product_name'])) {
-                $conn = mysqli_connect('localhost', 'root', '', 'gotogro-mrm');
-                if (!$conn) {
-                    echo "Can't connect to database.";
+                    $run = mysqli_query($conn, $SQL) or die(mysqli_error($conn));
+                    if($run){?>
+                        <script type="text/javascript">
+                            alert("Your submission is successful.");
+                            window.location.href = "product.php";
+                        </script>
+                            <?php
+                    }
+                } else {
+                    ?>
+                        <script type="text/javascript">
+                            alert("Duplicate product name detected. Please try again.");
+                        </script>
+                    <?php
                 }
-                $SQL = "INSERT INTO product (ProductName, ProductStock, ProductSupplyDate, ProductSupplier, ProductPricePerUnit) 
-                VALUES ('$product_name', '$product_stock', '$product_supply_date', '$product_supplier', '$product_price_per_unit')";
-
-                $run = mysqli_query($conn, $SQL) or die(mysqli_error($conn));
-                if($run){?>
-                    <script type="text/javascript">
-                        alert("Your submission is successful.");
-                        window.location.href = "product.php";
-                    </script>
-                        <?php
-                }
-            } else {
-                ?>
-                    <script type="text/javascript">
-                        alert("Duplicate product name detected. Please try again.");
-                    </script>
-                <?php
             }
         }
         ?>
