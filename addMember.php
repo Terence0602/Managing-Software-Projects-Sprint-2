@@ -25,33 +25,37 @@
 
         $member_f_error = $member_l_error = $dob_error = $email_error = $number_error = $street_error = $suburb_error = $state_error = $postcode_error = "";
         $member_f = $member_l = $dob = $email = $number = $street = $suburb = $state = $postcode = $joindate = "";
-        $verify_complete_member_f = $verify_complete_member_l = $verify_complete_email = $verify_complete_number = $verify_complete_address = $verify_complete_suburb = $verify_complete_state = $verify_complete_postcode = 0;
+        $valid_form = true;
 
         if ($_SERVER["REQUEST_METHOD"] == "POST"){
             if (empty($_POST["member_f"])) {
                 $member_f_error = "Name is required";
+                $valid_form = false;
             } else {
                 $member_f = $_POST["member_f"];
-                $verify_complete_member_f = 1;
                 if (strlen($member_f) > 50) {
                     $member_f_error = "The entered name cannot exceed 50 characters. Please try again.";
+                    $valid_form = false;
                 }
                 if(!preg_match("/^[a-zA-Z-' ]*$/",$member_f)){
                     $member_f_error = "You can only enter letters and spaces. Please try again.";
+                    $valid_form = false;
                 }
             }
         }
         if ($_SERVER["REQUEST_METHOD"] == "POST"){
             if (empty($_POST["member_l"])) {
                 $member_l_error = "Name is required";
+                $valid_form = false;
             } else {
                 $member_l = $_POST["member_l"];
-                $verify_complete_member_l = 1;
                 if (strlen($member_l) > 50) {
                     $member_l_error = "The entered name cannot exceed 50 characters. Please try again.";
+                    $valid_form = false;
                 }
                 if(!preg_match("/^[a-zA-Z-' ]*$/",$member_l)){
                     $member_l_error = "You can only enter letters and spaces. Please try again.";
+                    $valid_form = false;
                 }
             }
         }
@@ -60,71 +64,79 @@
         }
         if (empty($_POST["email"])) {
             $email_error = "Email is required";
+            $valid_form = false;
         } else {
             $email = $_POST["email"];
-            $verify_complete_email = 1;
             if (!preg_match("/^[A-Za-z0-9+_.-]+@(.+)$/", $email)){
                 $email_error = "Invalid email domain. Please try again.";
+                $valid_form = false;
             }
         }
         if ($_SERVER["REQUEST_METHOD"] == "POST"){
             if (empty($_POST["number"])) {
                 $number_error = "Phone number is required";
+                $valid_form = false;
             } else {
                 $number = $_POST["number"];
-                $verify_complete_number = 1;
                 if (strlen($number) != 10) {
                     $number_error = "Your phone number can only have ten numbers. Please try again.";
+                    $valid_form = false;
                 }
                 if(!preg_match("/^\d{10}$/",$number)){
                     $number_error = "You can only enter numbers with no spaces. Please try again.";
+                    $valid_form = false;
                 }
             }
         }
         if ($_SERVER["REQUEST_METHOD"] == "POST"){
             if (empty($_POST["street"])) {
                 $street_error = "Street address is required";
+                $valid_form = false;
             } else {
                 $street = $_POST["street"];
-                $verify_complete_address = 1;
                 if (strlen($street) > 100) {
                     $street_error = "The entered street address cannot exceed 100 characters. Please try again.";
+                    $valid_form = false;
                 }
             }
         }
         if ($_SERVER["REQUEST_METHOD"] == "POST"){
             if (empty($_POST["suburb"])) {
                 $suburb_error = "Suburb is required";
+                $valid_form = false;
             } else {
                 $suburb = $_POST["suburb"];
-                $verify_complete_suburb = 1;
                 if (strlen($suburb) > 30) {
                     $suburb_error = "The entered suburb cannot exceed 30 characters. Please try again.";
+                    $valid_form = false;
                 }
                 if(!preg_match("/^[a-zA-Z-' ]*$/",$suburb)){
                     $suburb_error = "You can only enter letters and spaces. Please try again.";
+                    $valid_form = false;
                 }
             }
         }
         if ($_SERVER["REQUEST_METHOD"] == "POST"){
             if (empty($_POST["state"])) {
                 $state_error = "State is required";
+                $valid_form = false;
             } else {
                 $state = $_POST["state"];
-                $verify_complete_state = 1;
             }
         }
         if ($_SERVER["REQUEST_METHOD"] == "POST"){
             if (empty($_POST["postcode"])) {
                 $postcode_error = "Postcode is required";
+                $valid_form = false;
             } else {
                 $postcode = $_POST["postcode"];
-                $verify_complete_postcode = 1;
                 if (strlen($postcode) != 4) {
                     $postcode_error = "The entered postcode must have 4 characters. Please try again.";
+                    $valid_form = false;
                 }
                 if(!preg_match("/^\d{4}$/",$postcode)){
                     $postcode_error = "You can only enter numbers with no spaces. Please try again.";
+                    $valid_form = false;
                 }
             }
         }
@@ -222,7 +234,7 @@
                   return false;
                 }
             }
-            if($verify_complete_member_f = $verify_complete_member_l = $verify_complete_email = $verify_complete_number = $verify_complete_address = $verify_complete_suburb = $verify_complete_state = $verify_complete_postcode == 1){
+            if($valid_form){
                 if (dupeEmail($_POST['email'])) {
                     if (dupePhoneNumber($_POST['number'])) {
                         $conn = mysqli_connect('localhost', 'root', '', 'gotogro-mrm');

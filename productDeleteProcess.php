@@ -20,13 +20,15 @@
     $run = mysqli_query($conn, $SQL)or die(mysqli_error($conn));
 	
     if($run){?>
-	<script type="text/javascript">
-		alert("Submission successful."); 
-    </script>
+		<script type="text/javascript">
+			alert("Product successfully deleted.");
+			window.location.href = "product.php";
+		</script>
 		<?php
 	}else{?>
 		<script type="text/javascript">
-        alert("Sorry, your submission has failed. Please check your information before submitting again."); 
+			alert("Deletion failed. Please try again.");
+			window.location.href = "product.php";
 		</script>
 		<?php	
 	}

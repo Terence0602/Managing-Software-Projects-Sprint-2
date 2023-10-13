@@ -25,50 +25,50 @@
 
         $sales_date = $selected_product = $selected_member = $quantity = "";
         $sales_date_error = $selected_product_error = $selected_member_error = $quantity_error = "";
-        $verify_date = $verify_product = $verify_member = $verify_quantity = 0;
+        $valid_form = true;
 
         if ($_SERVER["REQUEST_METHOD"] == "POST"){
             if (empty($_POST["sales_date"])) {
                 $sales_date_error = "Sales date is required";
+                $valid_form = false;
             } else {
                 $sales_date = $_POST["sales_date"];
-                $verify_date = 1;
             }
         }
 
         if ($_SERVER["REQUEST_METHOD"] == "POST"){
             if (empty($_POST["selected_product"])) {
                 $selected_product_error = "You must select a product";
+                $valid_form = false;
             } else {
                 $selected_product = $_POST["selected_product"];
-                $verify_product = 1;
             }
         }
 
         if ($_SERVER["REQUEST_METHOD"] == "POST"){
             if (empty($_POST["selected_member"])) {
                 $selected_member_error = "You must select a member";
+                $valid_form = false;
             } else {
                 $selected_member = $_POST["selected_member"];
-                $verify_member = 1;
             }
         }
 
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if (empty($_POST["quantity"]) || $_POST["quantity"] == 0) {
                 $quantity_error = "Item quantity is needed and should be greater than 0";
+                $valid_form = false;
             } else {
                 $quantity = $_POST["quantity"];
-                $verify_quantity = 1;
             }
         }
 
         if ($_SERVER["REQUEST_METHOD"] == "POST") { 
             if (empty($_POST["quantity"]) || $_POST["quantity"] == 0) {
                 $quantity_error = "Item quantity is needed and should be greater than 0";
+                $valid_form = false;
             } else {
                 $quantity = $_POST["quantity"];
-                $verify_quantity = 1;
                 $conn = mysqli_connect('localhost', 'root', '', 'gotogro-mrm');
                             if (!$conn) {
                                 echo "Can't connect to the database.";
@@ -82,7 +82,7 @@
                     $available_stock = $row['ProductStock'];
                     if ($quantity > $available_stock) {
                         $quantity_error = "Quantity exceeds available stock ($available_stock units).";
-                        $verify_quantity = 0;
+                        $valid_form = false;
                     }
                 }
             }
@@ -185,7 +185,7 @@
         </form>
         <?php
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            if ($verify_date == 1 && $verify_product == 1 && $verify_member == 1 && $verify_quantity == 1) {
+            if ($valid_form) {
                 $conn = mysqli_connect('localhost', 'root', '', 'gotogro-mrm');
                 if (!$conn) {
                     echo "Can't connect to the database.";

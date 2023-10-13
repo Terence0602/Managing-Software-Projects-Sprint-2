@@ -27,16 +27,17 @@
 
         $product_name = $product_stock = $product_supply_date = $product_supplier = $product_price_per_unit = "";
         $product_name_error = $product_stock_error = $product_supply_date_error = $product_supplier_error = $product_price_per_unit_error = "";
-        $verify_name = $verify_stock = $verify_supply_date = $verify_supplier = $verify_price_per_unit = 0;
+        $valid_form = true;
 
         if ($_SERVER["REQUEST_METHOD"] == "POST"){
             if (empty($_POST["product_name"])) {
                 $product_name_error = "Product name is required";
+                $valid_form = false;
             } else {
                 $product_name = $_POST["product_name"];
-                $verify_name = 1;
                 if (strlen($product_name) > 50) {
                     $product_name_error = "The entered product name cannot exceed 50 characters. Please try again.";
+                    $valid_form = false;
                 }
             }
         }
@@ -44,29 +45,30 @@
         if ($_SERVER["REQUEST_METHOD"] == "POST"){
             if (empty($_POST["product_stock"])) {
                 $product_stock_error = "Stock quantity is required";
+                $valid_form = false;
             } else {
                 $product_stock = $_POST["product_stock"];
-                $verify_stock = 1;
             }
         }
 
         if ($_SERVER["REQUEST_METHOD"] == "POST"){
             if (empty($_POST["product_supply_date"])) {
                 $product_supply_date_error = "Supply date is required";
+                $valid_form = false;
             } else {
                 $product_supply_date = $_POST["product_supply_date"];
-                $verify_supply_date = 1;
             }
         }
 
         if ($_SERVER["REQUEST_METHOD"] == "POST"){
             if (empty($_POST["product_supplier"])) {
                 $product_supplier_error = "Product supplier is required";
+                $valid_form = false;
             } else {
                 $product_supplier = $_POST["product_supplier"];
-                $verify_supplier = 1;
                 if (strlen($product_supplier) > 50) {
                     $product_supplier_error = "The entered product supplier cannot exceed 50 characters. Please try again.";
+                    $valid_form = false;
                 }
             }
         }
@@ -74,9 +76,9 @@
         if ($_SERVER["REQUEST_METHOD"] == "POST"){
             if (empty($_POST["product_price_per_unit"])) {
                 $product_price_per_unit_error = "The price per unit of the product is required";
+                $valid_form = false;
             } else {
                 $product_price_per_unit = $_POST["product_price_per_unit"];
-                $verify_price_per_unit = 1;
             }
         }
 
@@ -118,9 +120,9 @@
         ?>
         </div>
         <div id="container">
-        <form method="post" id="add_product" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>?pname=<?php echo urlencode($_SESSION['pname']); ?>&product_id=<?php echo urlencode($_SESSION['product_id']); ?>"> 
+        <form method="post" id="edit_product" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>?pname=<?php echo urlencode($_SESSION['pname']); ?>&product_id=<?php echo urlencode($_SESSION['product_id']); ?>"> 
             <fieldset>
-                <legend>Add Product Form</legend>
+                <legend>Edit Product Form</legend>
                 <p>
                     <label for="product_name">Product Name:</label>
                     <input type="text" name="product_name" id="product_name" maxlength="50" size="50" placeholder="Product Name" value="<?php echo $product_name;?>"/>
@@ -147,7 +149,7 @@
             <input type="reset" value="Reset Form" />
             </form>
             <?php
-            if($verify_name = $verify_stock = $verify_supply_date = $verify_supplier = $verify_price_per_unit == 1){
+            if($valid_form){
                 $conn = mysqli_connect('localhost', 'root', '', 'gotogro-mrm');
                 if (!$conn) {
                     echo "Can't connect to database.";
